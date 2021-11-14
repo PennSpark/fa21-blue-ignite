@@ -11,6 +11,7 @@ body {
 
 h1 {
   text-align: center;
+  font-size: 2.5em;
 }
 
 h1:hover {
@@ -32,7 +33,7 @@ canvas {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  width: 1000px;
-  height: 600px;
+  width: 1200px;
+  height: 700px;
   border: 2.5px outset #ecbebe;
 }

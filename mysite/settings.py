@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'inspire_site.apps.InspireSiteConfig',
+    'embed_video',
 ]
 
 MIDDLEWARE = [

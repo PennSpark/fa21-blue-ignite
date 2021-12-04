@@ -4,7 +4,7 @@ import './index.css';
 import Canvas from "./Canvas";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import reportWebVitals from './reportWebVitals';
-import YouTube from 'react-youtube';
+import ReactPlayer from "react-player";
 
 var list_select = document.querySelector("#list-container");
 var quote_select = document.querySelector("#quote-container");
@@ -60,7 +60,7 @@ ReactDOM.render(
     <div>
         <p>{quote}</p>
         <p>- {author}</p>
-        <YouTube videoId={getRandomVid()}/>
+        <ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVid()} muted={true} playing={true} loop={true}/>
         <Canvas />
     </div>,
     quote_select

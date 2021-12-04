@@ -1,11 +1,13 @@
-<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Canvas from "./Canvas";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import reportWebVitals from './reportWebVitals';
 
-var destination = document.querySelector("#quote-container");
+var list_select = document.querySelector("#list-container");
+var quote_select = document.querySelector("#quote-container");
+
 function httpGet(url) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url,false );
@@ -23,21 +25,7 @@ ReactDOM.render(
     <div>
         <p>{quote}</p>
         <p>- {author}</p>
+        <Canvas />
     </div>,
-    destination
-=======
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import Canvas from "./Canvas";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
-
-var destination = document.querySelector("#list-container");
-
-ReactDOM.render(
-  <div>
-    <Canvas />
-  </div>,
-  destination
->>>>>>> main
+    quote_select
 );

@@ -12,14 +12,16 @@ import ReactPlayer from "react-player";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 /* code for random videos */
-
 // gets 50 random youtube ids, will need to run this again when we have used all 50
 // which i assume we can do in the canvas somehow?
-// also fyi we can only run this 100 times in 1 day... so be careful lmao
-var fifty_ids = getRandomIds();
+// also fyi we can only run this 100 times in 1 day so i commented it out... be careful lmao
+//var fifty_ids = getRandomIds();
 
 /* code for random quotes */
 var twenty_quotes = get20RandomQuotes();
+
+// TO DO: figure out how to call these two function above again when we need to 
+// generate more than 50 videos or 20 quotes and there to organize these functions better
 
 function generateLayout() {
   return _.map(_.range(0, 41), function (item, i) {

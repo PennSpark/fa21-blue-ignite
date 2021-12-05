@@ -9,26 +9,45 @@ import ReactPlayer from "react-player";
 var list_select = document.querySelector("#list-container");
 var quote_select = document.querySelector("#quote-container");
 
-function httpGet(url) {
+export function httpGet(url) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url,false );
     xmlHttp.send(null);
     return xmlHttp.responseText;
 }
 
-function parseResponse(response) {
+export function parseResponse(response) {
     return JSON.parse(response);
 }
 
 /* code for random quotes */
-var response = parseResponse(httpGet("https://api.quotable.io/random"));
-var quote = response.content;
-var author = response.author;
+export function get20RandomQuotes() {
+  var quoteList = {};
+
+  for ( var i = 0; i < 20; i++ ) {
+    var response = parseResponse(httpGet("https://api.quotable.io/random"));
+    var quote = response.content;
+    var author = response.author;
+
+    quoteList[author] = quote;
+  }
+
+  return quoteList;
+}
+
+export function getRandomQuote(quoteList) {
+  var keys = Object.keys(quoteList); 
+  
+  var quote = quoteList[keys[ keys.length * Math.random() << 0]];
+  var author = Object.keys(quoteList).find(key => quoteList[key] === quote);
+
+  return quote + ' -' + author;
+}
 
 /* code for random videos */
-function getRandomVid() {
-  var count = 10;
-  var API_KEY = 'AIzaSyDWTu1jFVq0sA8mqCTzrSKVb6FszG8ixrI';
+export function getRandomIds() {
+  var count = 50;
+  var API_KEY = 'AIzaSyA4ENuatedytpap5a-jMwLbeKm9mQCFmuI';
 
   // make a random search key, characters or digits
   var random_choice = '';
@@ -42,8 +61,12 @@ function getRandomVid() {
   // create a search query for the api
   var api_data = 'https://www.googleapis.com/youtube/v3/search?key=' + API_KEY + '&maxResults=' + count + '&part=snippet&type=video&q=' + random_choice
 
+  console.log(api_data);
+
   // fetch that response
   var video_response = parseResponse(httpGet(api_data));
+
+  console.log(video_response);
 
   // create a list of all of the video ids that were pulled
   var id_list = [];
@@ -51,16 +74,21 @@ function getRandomVid() {
 
   for ( var i = 0; i < count; i++ ) {
     id_list.push(items[i]['id']['videoId']);
+    console.log(items[i]);
   }
 
+  return id_list;
+}
+
+export function getRandomVideo(id_list){
   return id_list[Math.floor(Math.random() * id_list.length)];
 }
 
+
 ReactDOM.render(
     <div>
-        <p>{quote}</p>
-        <p>- {author}</p>
-        <ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVid()} muted={true} playing={true} loop={true}/>
+        {/*<p>{quote}</p>*/}
+        {/*<p>- {author}</p>*/}
         <Canvas />
     </div>,
     quote_select

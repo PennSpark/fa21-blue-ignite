@@ -6,7 +6,20 @@ import "./css/react-grid-layout-style.css";
 import "./css/react-resizable-style.css";
 import { PlusCircle } from "react-bootstrap-icons";
 import NavBar from "./Components/NavBar";
+import { getRandomIds, getRandomVideo, parseResponse, httpGet, get20RandomQuotes, getRandomQuote } from "./index.js";
+import ReactPlayer from "react-player";
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
+/* code for random videos */
+
+// gets 50 random youtube ids, will need to run this again when we have used all 50
+// which i assume we can do in the canvas somehow?
+// also fyi we can only run this 100 times in 1 day... so be careful lmao
+var fifty_ids = getRandomIds();
+
+/* code for random quotes */
+var twenty_quotes = get20RandomQuotes();
 
 function generateLayout() {
   return _.map(_.range(0, 41), function (item, i) {
@@ -54,10 +67,12 @@ export default class Canvas extends React.Component {
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
           />
-          <img
+          <p>{getRandomQuote(twenty_quotes)}</p>
+          {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
+          {/*<img
             src={`https://picsum.photos/${l.w * 230}/${l.h * 100}`}
             style={{ maxWidth: "100%", maxHeight: "100%" }}
-          ></img>
+          ></img>*/}
           {/*<span className="text">{l.i}</span>  //commented out for demo purposes:) */}
         </div>
       );

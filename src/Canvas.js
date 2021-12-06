@@ -15,7 +15,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 // gets 50 random youtube ids, will need to run this again when we have used all 50
 // which i assume we can do in the canvas somehow?
 // also fyi we can only run this 100 times in 1 day so i commented it out... be careful lmao
-//var fifty_ids = getRandomIds();
+var fifty_ids = getRandomIds();
 
 /* code for random quotes */
 var twenty_quotes = get50RandomQuotes();
@@ -80,7 +80,7 @@ export default class Canvas extends React.Component {
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
           />
-         {/* <ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
+          {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} playing={false} loop={true} width="100%" height="100%"/>}
         </div>
         );
       } else {

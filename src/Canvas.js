@@ -72,9 +72,23 @@ export default class Canvas extends React.Component {
     unsplash.photos.getRandom({
         count: 30
     }).then(results => {
-      this.setState({ pics: results.response });
+      this.setState({ ...this.state.pics, pics: results.response });
       this.state.pics.forEach(pic => console.log(pic));
-  })};
+  })}
+
+  GeneratePic() {
+    var pic = this.state.pics[Math.floor(Math.random() * this.state.pics.length)];
+
+    return (
+      <div className="card" key={pic.id}>
+        <img
+          className="card--image"
+          alt={pic.alt_description}
+          src={pic.urls.full}
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        ></img>
+      </div>
+  )}
 
   generateDOM() {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
@@ -86,14 +100,7 @@ export default class Canvas extends React.Component {
           />
           {/* <p>{getRandomQuote(twenty_quotes)}</p> */}
           {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
-          { this.state.pics.map((pic) => <div className="card" key={pic.id}>
-            <img
-              className="card--image"
-              alt={pic.alt_description}
-              src={pic.urls.full}
-              style={{ maxWidth: "100%", maxHeight: "100%" }}
-            ></img>
-          </div>)}
+          <this.GeneratePic />
           {/*<span className="text">{l.i}</span>  //commented out for demo purposes:) */}
         </div>
       );

@@ -10,6 +10,7 @@ import { getRandomIds, getRandomVideo, parseResponse, httpGet, get20RandomQuotes
 import ReactPlayer from "react-player";
 import { useState } from "react";
 import { createApi } from "unsplash-js";
+import { touchRippleClasses } from "@mui/material";
 
 const unsplash = new createApi({
   accessKey: "eWlwUu5dZFK9R4eM-afu5PoMEp3-RAIOJTyc__SvfDs",
@@ -72,6 +73,7 @@ export default class Canvas extends React.Component {
         count: 30
     }).then(results => {
       this.setState({ pics: results.response });
+      this.state.pics.forEach(pic => window.alert(pic));
   })};
 
   generateDOM() {
@@ -84,11 +86,11 @@ export default class Canvas extends React.Component {
           />
           <p>{getRandomQuote(twenty_quotes)}</p>
           {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
-          { this.pics.map((pic) => <div className="card" key={this.pic.id}>
+          { this.state.pics.map((pic) => <div className="card" key={pic.id}>
             <img
               className="card--image"
-              alt={this.pic.alt_description}
-              src={this.pic.urls.full}
+              alt={pic.alt_description}
+              src={pic.urls.full}
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             ></img>
           </div>)}

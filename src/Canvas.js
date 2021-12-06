@@ -80,7 +80,7 @@ export default class Canvas extends React.Component {
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
           />
-          {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} playing={false} loop={true} width="100%" height="100%"/>}
+          {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} playing={false} loop={true} width="100%" height="80%"/>}
         </div>
         );
       } else {

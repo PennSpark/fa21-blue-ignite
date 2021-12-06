@@ -6,7 +6,7 @@ import "./css/react-grid-layout-style.css";
 import "./css/react-resizable-style.css";
 import { PlusCircle } from "react-bootstrap-icons";
 import NavBar from "./Components/NavBar";
-import { getRandomIds, getRandomVideo, parseResponse, httpGet, get20RandomQuotes, getRandomQuote } from "./index.js";
+import { getRandomIds, getRandomVideo, parseResponse, httpGet, get50RandomQuotes, getRandomQuote } from "./index.js";
 import ReactPlayer from "react-player";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -18,7 +18,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 //var fifty_ids = getRandomIds();
 
 /* code for random quotes */
-var twenty_quotes = get20RandomQuotes();
+var twenty_quotes = get50RandomQuotes();
 
 // TO DO: figure out how to call these two function above again when we need to 
 // generate more than 50 videos or 20 quotes and there to organize these functions better
@@ -63,21 +63,40 @@ export default class Canvas extends React.Component {
 
   generateDOM() {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
-      return (
+      if (l.i % 3 == 0) {
+        return (
         <div key={l.i}>
           <PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
           />
-          <p>{getRandomQuote(twenty_quotes)}</p>
-          {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
-          {/*<img
-            src={`https://picsum.photos/${l.w * 230}/${l.h * 100}`}
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
-          ></img>*/}
-          {/*<span className="text">{l.i}</span>  //commented out for demo purposes:) */}
+          <p>{getRandomQuote(twenty_quotes, parseInt(l.i))}</p>
         </div>
-      );
+        );
+      } else if (l.i % 3 == 1) {
+        return (
+        <div key={l.i}>
+          <PlusCircle
+            className="hide-button"
+            onClick={this.onPutItem.bind(this, l)}
+          />
+         {/* <ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
+        </div>
+        );
+      } else {
+        return (
+          <div key={l.i}>
+            <PlusCircle
+              className="hide-button"
+              onClick={this.onPutItem.bind(this, l)}
+            />
+            <img
+              src={`https://picsum.photos/${l.w * 230}/${l.h * 100}`}
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            ></img>
+          </div>
+          );
+      }
     });
   }
 

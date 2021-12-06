@@ -21,10 +21,10 @@ export function parseResponse(response) {
 }
 
 /* code for random quotes */
-export function get20RandomQuotes() {
+export function get50RandomQuotes() {
   var quoteList = {};
 
-  for ( var i = 0; i < 20; i++ ) {
+  for ( var i = 0; i < 50; i++ ) {
     var response = parseResponse(httpGet("https://api.quotable.io/random"));
     var quote = response.content;
     var author = response.author;
@@ -35,10 +35,10 @@ export function get20RandomQuotes() {
   return quoteList;
 }
 
-export function getRandomQuote(quoteList) {
+export function getRandomQuote(quoteList, index) {
   var keys = Object.keys(quoteList); 
   
-  var quote = quoteList[keys[ keys.length * Math.random() << 0]];
+  var quote = quoteList[keys[ index % 50 ]];
   var author = Object.keys(quoteList).find(key => quoteList[key] === quote);
 
   return quote + ' -' + author;
@@ -87,8 +87,6 @@ export function getRandomVideo(id_list){
 
 ReactDOM.render(
     <div>
-        {/*<p>{quote}</p>*/}
-        {/*<p>- {author}</p>*/}
         <Canvas />
     </div>,
     quote_select

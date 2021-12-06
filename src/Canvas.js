@@ -73,7 +73,7 @@ export default class Canvas extends React.Component {
         count: 30
     }).then(results => {
       this.setState({ pics: results.response });
-      this.state.pics.forEach(pic => window.alert(pic));
+      this.state.pics.forEach(pic => console.log(pic));
   })};
 
   generateDOM() {
@@ -84,7 +84,7 @@ export default class Canvas extends React.Component {
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
           />
-          <p>{getRandomQuote(twenty_quotes)}</p>
+          {/* <p>{getRandomQuote(twenty_quotes)}</p> */}
           {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
           { this.state.pics.map((pic) => <div className="card" key={pic.id}>
             <img

@@ -8,6 +8,12 @@ import { PlusCircle } from "react-bootstrap-icons";
 import NavBar from "./Components/NavBar";
 import { getRandomIds, getRandomVideo, parseResponse, httpGet, get20RandomQuotes, getRandomQuote } from "./index.js";
 import ReactPlayer from "react-player";
+import { useState } from "react";
+import { createApi } from "unsplash-js";
+
+const unsplash = new createApi({
+  accessKey: "eWlwUu5dZFK9R4eM-afu5PoMEp3-RAIOJTyc__SvfDs",
+});
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -53,11 +59,20 @@ export default class Canvas extends React.Component {
     mounted: false,
     layouts: { lg: this.props.initialLayout },
     block: { lg: [] },
+    pics: [],
   };
 
   componentDidMount() {
     this.setState({ mounted: true });
+    this.searchPhotos();
   }
+
+  searchPhotos() {
+    unsplash.photos.getRandom({
+        count: 30
+    }).then(results => {
+      this.setState({ pics: results.response });
+  })};
 
   generateDOM() {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
@@ -69,10 +84,14 @@ export default class Canvas extends React.Component {
           />
           <p>{getRandomQuote(twenty_quotes)}</p>
           {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
-          {/*<img
-            src={`https://picsum.photos/${l.w * 230}/${l.h * 100}`}
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
-          ></img>*/}
+          { this.pics.map((pic) => <div className="card" key={this.pic.id}>
+            <img
+              className="card--image"
+              alt={this.pic.alt_description}
+              src={this.pic.urls.full}
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            ></img>
+          </div>)}
           {/*<span className="text">{l.i}</span>  //commented out for demo purposes:) */}
         </div>
       );

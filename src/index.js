@@ -61,8 +61,12 @@ export function getRandomIds() {
   // create a search query for the api
   var api_data = 'https://www.googleapis.com/youtube/v3/search?key=' + API_KEY + '&maxResults=' + count + '&part=snippet&type=video&q=' + random_choice
 
+  // console.log(api_data);
+
   // fetch that response
   var video_response = parseResponse(httpGet(api_data));
+
+  // console.log(video_response);
 
   // create a list of all of the video ids that were pulled
   var id_list = [];
@@ -70,6 +74,7 @@ export function getRandomIds() {
 
   for ( var i = 0; i < count; i++ ) {
     id_list.push(items[i]['id']['videoId']);
+    // console.log(items[i]);
   }
 
   return id_list;

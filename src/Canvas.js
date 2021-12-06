@@ -8,6 +8,13 @@ import { PlusCircle } from "react-bootstrap-icons";
 import NavBar from "./Components/NavBar";
 import { getRandomIds, getRandomVideo, parseResponse, httpGet, get50RandomQuotes, getRandomQuote } from "./index.js";
 import ReactPlayer from "react-player";
+import { useState } from "react";
+import { createApi } from "unsplash-js";
+import { touchRippleClasses } from "@mui/material";
+
+const unsplash = new createApi({
+  accessKey: "eWlwUu5dZFK9R4eM-afu5PoMEp3-RAIOJTyc__SvfDs",
+});
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -55,11 +62,35 @@ export default class Canvas extends React.Component {
     mounted: false,
     layouts: { lg: this.props.initialLayout },
     block: { lg: [] },
+    pics: [],
   };
 
   componentDidMount() {
     this.setState({ mounted: true });
+    this.searchPhotos();
   }
+
+  searchPhotos() {
+    unsplash.photos.getRandom({
+        count: 30
+    }).then(results => {
+      this.setState({ ...this.state.pics, pics: results.response });
+      this.state.pics.forEach(pic => console.log(pic));
+  })}
+
+  GeneratePic() {
+    var pic = this.state.pics[Math.floor(Math.random() * this.state.pics.length)];
+
+    return (
+      <div className="card" key={pic.id}>
+        <img
+          className="card--image"
+          alt={pic.alt_description}
+          src={pic.urls.full}
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        ></img>
+      </div>
+  )}
 
   generateDOM() {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
@@ -80,7 +111,10 @@ export default class Canvas extends React.Component {
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
           />
-          {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} playing={false} loop={true} width="100%" height="80%"/>}
+          {/* <p>{getRandomQuote(twenty_quotes)}</p> */}
+          {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
+          <this.GeneratePic />
+          {/*<span className="text">{l.i}</span>  //commented out for demo purposes:) */}
         </div>
         );
       } else {

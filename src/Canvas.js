@@ -28,7 +28,7 @@ function generateLayout() {
     const width = 12; // width of entire canvas (should ideally be multiple of 4 and 3)
     const y = 4;
     const w = 3;
-    var h = Math.floor(Math.random() * (6 - 4 + 1) + 4)
+    var h = Math.floor(Math.random() * (6 - 4 + 1) + 6)
     var x = (_.random(0, y - 1) * w) % width;
     return {
       x: x,

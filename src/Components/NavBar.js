@@ -26,7 +26,7 @@ export default class NavBar extends React.Component {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="m-auto" style={{ maxHeight: "100px" }} navbarScroll>
-              <Form className="d-flex">
+              {/*<Form className="d-flex">
                 <FormControl
                   type="search"
                   placeholder="Search for ideas..."
@@ -35,10 +35,11 @@ export default class NavBar extends React.Component {
                 />
                 <Button variant="primary" size="sm">
                   <Search />
-                </Button>
-              </Form>
+              </Button>
+              </Form>*/}
               &nbsp;&nbsp;
-              <OverlayTrigger
+            </Nav>
+            <OverlayTrigger
                 placement="right"
                 overlay={
                   <Tooltip>
@@ -55,12 +56,11 @@ export default class NavBar extends React.Component {
                   <MDBIcon icon="redo" />
                 </MDBBtn>
               </OverlayTrigger>
-            </Nav>
-            <Cart
+            {/*<Cart
               items={this.props.items}
               onTakeItem={this.props.onTakeItem}
               onClearItems={this.props.onClearItems}
-            />
+            />*/}
           </Navbar.Collapse>
         </Container>
       </Navbar>

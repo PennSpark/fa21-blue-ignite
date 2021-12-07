@@ -65,31 +65,33 @@ export default class Canvas extends React.Component {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
       if (l.i % 3 == 0) {
         return (
-        <div key={l.i}>
-          <PlusCircle
+        <div key={l.i} class="centering">
+            {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
-          />
+            /> commented out since the cart isnt working for demo */}
+ 
           <p>{getRandomQuote(twenty_quotes, parseInt(l.i))}</p>
         </div>
         );
       } else if (l.i % 3 == 1) {
         return (
-        <div key={l.i}>
-          <PlusCircle
+        <div key={l.i} class="centering">
+            {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
-          />
+            /> commented out since the cart isnt working for demo */}
+ 
           {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} playing={false} loop={true} width="100%" height="80%"/>}
         </div>
         );
       } else {
         return (
-          <div key={l.i}>
-            <PlusCircle
-              className="hide-button"
-              onClick={this.onPutItem.bind(this, l)}
-            />
+          <div key={l.i} class="centering">
+            {/*<PlusCircle
+            className="hide-button"
+            onClick={this.onPutItem.bind(this, l)}
+            /> commented out since the cart isnt working for demo */}
             <img
               src={`https://picsum.photos/${l.w * 230}/${l.h * 100}`}
               style={{ maxWidth: "100%", maxHeight: "100%" }}

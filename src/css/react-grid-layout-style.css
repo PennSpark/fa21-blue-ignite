@@ -3,10 +3,13 @@
   transition: height 200ms ease;
 }
 .react-grid-item {
-  background-color: #bbdefb;
+  background-color: #bbdefb8e;
   border-radius: 3px;
   transition: all 200ms ease;
   transition-property: left, top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .react-grid-item:hover {
   box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5);
@@ -117,4 +120,9 @@
 .react-grid-item > .react-resizable-handle.react-resizable-handle-s {
   bottom: 0;
   transform: rotate(45deg);
+}
+
+.hide-button {
+  top: 0px;
+  right: 0px;
 }

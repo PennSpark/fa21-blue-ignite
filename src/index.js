@@ -75,8 +75,8 @@ export function getRandomIds() {
   return id_list;
 }
 
-export function getRandomVideo(id_list){
-  return id_list[Math.floor(Math.random() * id_list.length)];
+export function getRandomVideo(id_list, index){
+  return id_list[index % 50];
 }
 
 

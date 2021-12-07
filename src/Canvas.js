@@ -82,7 +82,7 @@ export default class Canvas extends React.Component {
             onClick={this.onPutItem.bind(this, l)}
             /> commented out since the cart isnt working for demo */}
  
-          {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} playing={false} loop={true} width="100%" height="80%"/>}
+          {<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids, parseInt(l.i))} playing={false} loop={true} width="100%" height="80%"/>}
         </div>
         );
       } else {

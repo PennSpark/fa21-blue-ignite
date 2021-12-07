@@ -65,18 +65,18 @@ export default class Canvas extends React.Component {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
       if (l.i % 3 == 0) {
         return (
-        <div key={l.i} class="centering">
+        <div key={l.i}>
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
             /> commented out since the cart isnt working for demo */}
  
-          <p>{getRandomQuote(twenty_quotes, parseInt(l.i))}</p>
+          <p style={{fontSize : (l.w + l.h) * 2}} > {getRandomQuote(twenty_quotes, parseInt(l.i))}</p>
         </div>
         );
       } else if (l.i % 3 == 1) {
         return (
-        <div key={l.i} class="centering">
+        <div key={l.i}>
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
@@ -87,7 +87,7 @@ export default class Canvas extends React.Component {
         );
       } else {
         return (
-          <div key={l.i} class="centering">
+          <div key={l.i}>
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}

@@ -65,7 +65,7 @@ export default class Canvas extends React.Component {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
       if (l.i % 3 == 0) {
         return (
-        <div key={l.i}>
+        <div key={l.i} classname="bg-white">
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
@@ -76,7 +76,7 @@ export default class Canvas extends React.Component {
         );
       } else if (l.i % 3 == 1) {
         return (
-        <div key={l.i}>
+        <div key={l.i} classname="bg-white">
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}

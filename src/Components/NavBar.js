@@ -49,7 +49,7 @@ export default class NavBar extends React.Component {
               >
                 <MDBBtn
                   rippleCentered
-                  color="primary"
+                  color="warning"
                   outline
                   onClick={this.props.onNewLayout}
                 >

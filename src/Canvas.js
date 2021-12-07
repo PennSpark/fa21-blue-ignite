@@ -16,6 +16,8 @@ const unsplash = new createApi({
   accessKey: "eWlwUu5dZFK9R4eM-afu5PoMEp3-RAIOJTyc__SvfDs",
 });
 
+const num_unsplash_pics = 30;
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 /* code for random videos */
@@ -72,25 +74,28 @@ export default class Canvas extends React.Component {
 
   searchPhotos() {
     unsplash.photos.getRandom({
-        count: 30
+        count: num_unsplash_pics 
     }).then(results => {
       this.setState({ ...this.state.pics, pics: results.response });
       this.state.pics.forEach(pic => console.log(pic));
   })}
 
-  GeneratePic() {
-    var pic = this.state.pics[Math.floor(Math.random() * this.state.pics.length)];
+  generatePicNum() {
+    return Math.floor(Math.random() *  num_unsplash_pics);
+  }
 
+  generatePicCard(num) {
     return (
-      <div className="card" key={pic.id}>
+      <div className="card" key={this.state.pics[num].id}>
         <img
           className="card--image"
-          alt={pic.alt_description}
-          src={pic.urls.full}
+          alt={this.state.pics[num].alt_description}
+          src={this.state.pics[num].urls.full}
           style={{ maxWidth: "100%", maxHeight: "100%" }}
-        ></img>
+        />
       </div>
-  )}
+    )
+  }
 
   generateDOM() {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
@@ -113,7 +118,9 @@ export default class Canvas extends React.Component {
           />
           {/* <p>{getRandomQuote(twenty_quotes)}</p> */}
           {/*<ReactPlayer url={'https://www.youtube.com/watch?v=' + getRandomVideo(fifty_ids)} muted={true} playing={true} loop={true}/>*/}
-          <this.GeneratePic />
+          {this.state.pics.length == num_unsplash_pics && 
+            this.generatePicCard(this.generatePicNum())
+          }
           {/*<span className="text">{l.i}</span>  //commented out for demo purposes:) */}
         </div>
         );

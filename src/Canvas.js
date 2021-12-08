@@ -73,7 +73,7 @@ export default class Canvas extends React.Component {
             onClick={this.onPutItem.bind(this, l)}
             /> commented out since the cart isnt working for demo */}
  
-          <p style={{fontSize : (l.w + l.h) * 2}} > {getRandomQuote(fifty_quotes, parseInt(l.i))}</p>
+          <p style={{fontSize : (l.w + l.h) * 2, padding : 20}} > {getRandomQuote(fifty_quotes, parseInt(l.i))}</p>
         </div>
         );
       } else if (l.i % 3 == 1) {

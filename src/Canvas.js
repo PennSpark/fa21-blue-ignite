@@ -67,7 +67,7 @@ export default class Canvas extends React.Component {
     return _.map(this.state.layouts[this.state.currentBreakpoint], (l) => {
       if (l.i % 3 == 0) {
         return (
-        <div key={l.i} classname="bg-white">
+        <div key={l.i} style={{ backgroundColor: "rgba(255, 229, 204, 0.52)" }}>
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
@@ -78,7 +78,7 @@ export default class Canvas extends React.Component {
         );
       } else if (l.i % 3 == 1) {
         return (
-        <div key={l.i} classname="bg-white">
+        <div key={l.i} style={{ backgroundColor: "rgba(255, 255, 204, 0.52)" }}>
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}
@@ -89,7 +89,7 @@ export default class Canvas extends React.Component {
         );
       } else {
         return (
-          <div key={l.i}>
+          <div key={l.i} style={{ backgroundColor: "rgba(243, 200, 200, 0.52)" }}>
             {/*<PlusCircle
             className="hide-button"
             onClick={this.onPutItem.bind(this, l)}

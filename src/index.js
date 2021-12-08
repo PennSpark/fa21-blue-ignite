@@ -13,7 +13,7 @@ export function httpGet(url) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url,false );
     xmlHttp.send(null);
-    return xmlHttp.responseText;
+    return xmlHttp;
 }
 
 export function parseResponse(response) {
@@ -25,7 +25,7 @@ export function get50RandomQuotes() {
   var quoteList = {};
 
   for ( var i = 0; i < 50; i++ ) {
-    var response = parseResponse(httpGet("https://api.quotable.io/random"));
+    var response = parseResponse(httpGet("https://api.quotable.io/random").responseText);
     var quote = response.content;
     var author = response.author;
 
@@ -42,6 +42,23 @@ export function getRandomQuote(quoteList, index) {
   var author = Object.keys(quoteList).find(key => quoteList[key] === quote);
 
   return quote + ' -' + author;
+}
+
+export function get50RandomPhotos() {
+  var photoList = [];
+
+  const url = "https://api.unsplash.com/photos/random/?count=50&client_id=eWlwUu5dZFK9R4eM-afu5PoMEp3-RAIOJTyc__SvfDs";
+  var data = JSON.parse(httpGet(url).response);
+
+  for (let i = 0; i < data.length; i++) {
+    photoList[i] = data[i].urls.full;
+  }
+
+  return photoList;
+}
+
+export function getRandomPhoto(photoList, index) {
+  return photoList[index % 50];
 }
 
 /* code for random videos */
@@ -62,7 +79,7 @@ export function getRandomIds() {
   var api_data = 'https://www.googleapis.com/youtube/v3/search?key=' + API_KEY + '&maxResults=' + count + '&part=snippet&type=video&q=' + random_choice
 
   // fetch that response
-  var video_response = parseResponse(httpGet(api_data));
+  var video_response = parseResponse(httpGet(api_data).responseText);
 
   // create a list of all of the video ids that were pulled
   var id_list = [];

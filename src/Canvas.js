@@ -6,7 +6,7 @@ import "./css/react-grid-layout-style.css";
 import "./css/react-resizable-style.css";
 import { PlusCircle } from "react-bootstrap-icons";
 import NavBar from "./Components/NavBar";
-import { getRandomIds, getRandomVideo, parseResponse, httpGet, get50RandomQuotes, getRandomQuote } from "./index.js";
+import { getRandomIds, getRandomVideo, parseResponse, httpGet, get50RandomPhotos, get50RandomQuotes, getRandomQuote, getRandomPhoto } from "./index.js";
 import ReactPlayer from "react-player";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -18,7 +18,9 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 var fifty_ids = getRandomIds();
 
 /* code for random quotes */
-var twenty_quotes = get50RandomQuotes();
+var fifty_quotes = get50RandomQuotes();
+
+var fifty_photos = get50RandomPhotos();
 
 // TO DO: figure out how to call these two function above again when we need to 
 // generate more than 50 videos or 20 quotes and there to organize these functions better
@@ -71,7 +73,7 @@ export default class Canvas extends React.Component {
             onClick={this.onPutItem.bind(this, l)}
             /> commented out since the cart isnt working for demo */}
  
-          <p style={{fontSize : (l.w + l.h) * 2}} > {getRandomQuote(twenty_quotes, parseInt(l.i))}</p>
+          <p style={{fontSize : (l.w + l.h) * 2}} > {getRandomQuote(fifty_quotes, parseInt(l.i))}</p>
         </div>
         );
       } else if (l.i % 3 == 1) {
@@ -93,7 +95,7 @@ export default class Canvas extends React.Component {
             onClick={this.onPutItem.bind(this, l)}
             /> commented out since the cart isnt working for demo */}
             <img
-              src={`https://picsum.photos/${l.w * 230}/${l.h * 100}`}
+              src={getRandomPhoto(fifty_photos, parseInt(l.i))}
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             ></img>
           </div>
